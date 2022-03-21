@@ -1,19 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <app-header />
+    <div class="content">
+      <div class="content-container">
+        <router-view/>
+      </div>
     </div>
-    <router-view/>
   </div>
 </template>
 
+<script>
+import appHeader from './components/app-header'
+
+export default {
+  name: 'app',
+  components: {
+    'app-header': appHeader,
+  }
+}
+</script>
+
 <style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  max-width: 1036px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.content {
+  padding: 30px;
+}
+.content-container {
+  max-width: 676px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  font-family: Montserrat, sans-serif;
   color: #2c3e50;
 }
 
@@ -28,5 +57,12 @@
       color: #42b983;
     }
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 </style>
